@@ -1,1 +1,1 @@
-
+"Prima strinha di py"
