@@ -10,13 +10,6 @@ Partecipanti
 '''
 #####################################################
 
-
-
- # nome della cartella Google Drive dove salvare i file
-cartella_drive = "CorsoBioinformatica"
-
-
-
 # Importazione moduli
 import numpy as np
 import pandas as pd
