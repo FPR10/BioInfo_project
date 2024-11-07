@@ -20,11 +20,12 @@ import Bio.SeqIO
 from bisect import bisect_left
 import pickle
 
-
-# CARICAMENTO DELLA SEQUENZA FASTA
-# scaricare il file
-# siloe.dimes.unical.it/~fab/group_<group_id>_seq.fasta
+'''
+Parte già coperta da
+ CARICAMENTO DELLA SEQUENZA FASTA
 os.system("wget -q https://siloe.dimes.unical.it/~fab/MedicinaTD/group_1_seq.fasta")  
+'''
+
 
 # RICERCA DELLE ORF
 # orf_iter restituisce un iteratore sulle orf
