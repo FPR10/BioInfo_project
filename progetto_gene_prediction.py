@@ -20,12 +20,6 @@ import Bio.SeqIO
 from bisect import bisect_left
 import pickle
 
-'''
-Parte già coperta da dowload_file_sequenza.py
- CARICAMENTO DELLA SEQUENZA FASTA
-os.system("wget -q https://siloe.dimes.unical.it/~fab/MedicinaTD/group_1_seq.fasta")  
-'''
-
 
 # RICERCA DELLE ORF
 # orf_iter restituisce un iteratore sulle orf
@@ -94,3 +88,6 @@ for orf in orf_iter(str(seq)):
 # SALVATAGGIO DEI RISULTATI SU FILE
 with open(f"group_{group_id}_results.pickle", "wb") as f:
 	pickle.dump(results, f)
+
+
+###########################################################################################################################################################################################
