@@ -79,10 +79,12 @@ results = pd.DataFrame(columns=["ORFpos","Coding","BLAST"])
 # SCANSIONE DELLE ORF NELLO STRAND DIRETTO
 #
 for orf in orf_iter(str(seq)):
-  # FLITRAGGIO PRELIMINARE
-  results.loc[len(results)] = [orf.span()[0], False, False]
-  # INSERIRE QUI LE PROPRIE RIGHE DI CODICE
-  pass
+  # FILTRAGGIO PRELIMINARE per lunghezza (>150): se la lunghezza della ORF è minore della soglia non la consideriamo
+  #altrimenti la aggiunge al risultato
+  lunghezza = orf.span()[1] - orf.span()[0]
+  if lunghezza > 250:
+	  results.loc[len(results)] = [orf.span()[0], False, False]
+pass
 
 
 # SALVATAGGIO DEI RISULTATI SU FILE
@@ -91,3 +93,30 @@ with open(f"group_{group_id}_results.pickle", "wb") as f:
 
 
 ###########################################################################################################################################################################################
+
+  # INSERIRE QUI LE PROPRIE RIGHE DI CODICE
+
+def cg_content(sequenza):
+	numeroC = seq.count('C')
+	numeroG = seq.count('G')
+	risultato = (numeroC+numeroG)/len(sequenza)
+	return risultato
+
+def tata_box(sequenza):
+	regex_tata = r"(TATA)(A|T)(A)(A|T)"
+	ret = regex.search(regex_tata,sequenza)
+	return ret.span()
+
+def iniziatore(sequenza):
+	regex_in = r"(C|T){2}A(A|C|G|T)(A|T)(C|T){2}"
+	ret = regex.search(regex_in,sequenza)
+	return ret.span()
+
+#PROVE
+#gen = orf_iter(str(seq))
+#print(next(gen))
+#print(next(gen))
+
+#print(results)
+prova = "TATAAATCGTAATCTAGTCC"
+print(iniziatore(str(prova)))
