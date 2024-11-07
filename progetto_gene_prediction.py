@@ -21,7 +21,7 @@ from bisect import bisect_left
 import pickle
 
 '''
-Parte già coperta da
+Parte già coperta da dowload_file_sequenza.py
  CARICAMENTO DELLA SEQUENZA FASTA
 os.system("wget -q https://siloe.dimes.unical.it/~fab/MedicinaTD/group_1_seq.fasta")  
 '''
