@@ -1,13 +1,12 @@
 import wget
 from Bio import SeqIO
 
-#Lettura del file + dowload su "filename"
+# Lettura del file + download su "filename"
 url = 'https://siloe.dimes.unical.it/~fab/MedicinaTD/group_1_seq.fasta'
 filename = wget.download(url)
 
-'''
-#Apertura e print del file
+#Stampa della lunghezza della sequenza
 with open(filename, "r") as file:
     for record in SeqIO.parse(file, "fasta"):
-        print(record.seq)
-'''
+        sequence_length = len(record.seq)
+        print("Lunghezza della sequenza:", sequence_length)
