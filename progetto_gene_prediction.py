@@ -1,9 +1,16 @@
 #####################################################
-# MODIFICARE QUESTA SEZIONE INSERENDO I PROPRI DATI #
+''' 
+Identificativo del gruppo
+group_id = 1
+
+Partecipanti
+- Mariaida Perri - mat. 239943
+- Andreea Roxana Manolache - mat. 245906
+- Francesco Pio Ruffo - mat. 240044
+'''
 #####################################################
 
- # identificativo del gruppo da verificare nel file excel
-group_id = 1
+
 
  # nome della cartella Google Drive dove salvare i file
 cartella_drive = "CorsoBioinformatica"
