@@ -107,6 +107,18 @@ def iniziatore(sequenza):
     ret = regex.search(regex_in, sequenza)
     return ret.span()
 
+def sequenza_Kozak(sequenza):
+    regex_K = r"(GCC)?(GCC)(A|G)(CC)(ATG)(G)"
+    ret = regex.search(regex_K, sequenza)
+    return ret.span()
+
+# SENSORI DI CONTENUTO
+def cg_content(sequenza):
+    numeroC = sequenza.count('C')
+    numeroG = sequenza.count('G')
+    risultato = (numeroC + numeroG) / len(sequenza)
+    return risultato
+
 def isole_CpG(sequenza):
     # NUMERO CpG OSSERVATI (numero di occorrenze CpG nella sequenza
     CpG_osservati = len(regex.findall(r"CG", sequenza))
@@ -130,18 +142,6 @@ def isole_CpG(sequenza):
     return CpG_osservato_atteso, contenuto_GC
 
     # NB. CONTENUTO CG > 0.5; RAPPORTO CpG OSSERVATO/ATTESO > 0.6
-
-def sequenza_Kozak(sequenza):
-    regex_K = r"(GCC)?(GCC)(A|G)(CC)(ATG)(G)"
-    ret = regex.search(regex_K, sequenza)
-    return ret.span()
-
-# SENSORI DI CONTENUTO
-def cg_content(sequenza):
-    numeroC = sequenza.count('C')
-    numeroG = sequenza.count('G')
-    risultato = (numeroC + numeroG) / len(sequenza)
-    return risultato
 
 # PROVE
 # gen = orf_iter(str(seq))
