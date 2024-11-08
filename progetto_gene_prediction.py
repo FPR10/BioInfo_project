@@ -96,27 +96,67 @@ with open(f"group_{group_id}_results.pickle", "wb") as f:
 
   # INSERIRE QUI LE PROPRIE RIGHE DI CODICE
 
-def cg_content(sequenza):
-	numeroC = seq.count('C')
-	numeroG = seq.count('G')
-	risultato = (numeroC+numeroG)/len(sequenza)
-	return risultato
-
+# SENSORI DI SEGNALE
 def tata_box(sequenza):
-	regex_tata = r"(TATA)(A|T)(A)(A|T)"
-	ret = regex.search(regex_tata,sequenza)
-	return ret.span()
+    regex_tata = r"(TATA)(A|T)(A)(A|T)"
+    ret = regex.search(regex_tata, sequenza)
+    return ret.span()
 
 def iniziatore(sequenza):
-	regex_in = r"(C|T){2}A(A|C|G|T)(A|T)(C|T){2}"
-	ret = regex.search(regex_in,sequenza)
-	return ret.span()
+    regex_in = r"(C|T){2}A(A|C|G|T)(A|T)(C|T){2}"
+    ret = regex.search(regex_in, sequenza)
+    return ret.span()
 
-#PROVE
-#gen = orf_iter(str(seq))
-#print(next(gen))
-#print(next(gen))
+def isole_CpG(sequenza):
+    # NUMERO CpG OSSERVATI (numero di occorrenze CpG nella sequenza
+    CpG_osservati = len(regex.findall(r"CG", sequenza))
 
-#print(results)
+    # NUMERO DI C E G NELLA SEQUENZA
+    numeroC = sequenza.count('C')
+    numeroG = sequenza.count('G')
+
+    lunghezza = len(sequenza)
+
+    # FREQUENZA ATTESA DI CpG
+    # E(CpG) = (numero di C / lunghezza) * (numero di G / lunghezza) * (lunghezza - 1)
+    CpG_atteso = (numeroC / lunghezza) * (numeroG / lunghezza) * (lunghezza - 1)
+
+    # RAPPORTO OSSERVATO/ATTESO
+    CpG_osservato_atteso = CpG_osservati / CpG_atteso
+
+    # CONTENUTO CG
+    contenuto_GC = cg_content(sequenza)
+
+    return CpG_osservato_atteso, contenuto_GC
+
+    # NB. CONTENUTO CG > 0.5; RAPPORTO CpG OSSERVATO/ATTESO > 0.6
+
+def sequenza_Kozak(sequenza):
+    regex_K = r"(GCC)?(GCC)(A|G)(CC)(ATG)(G)"
+    ret = regex.search(regex_K, sequenza)
+    return ret.span()
+
+# SENSORI DI CONTENUTO
+def cg_content(sequenza):
+    numeroC = sequenza.count('C')
+    numeroG = sequenza.count('G')
+    risultato = (numeroC + numeroG) / len(sequenza)
+    return risultato
+
+# PROVE
+# gen = orf_iter(str(seq))
+# print(next(gen))
+# print(next(gen))
+
+# print(results)
 prova = "TATAAATCGTAATCTAGTCC"
 print(iniziatore(str(prova)))
+
+sequenza_dna = "ATGCGATACGCGTAA"
+print(isole_CpG(sequenza_dna))
+
+prova_K1 = "CATGCCGCCGCCATGGTTT"
+print(sequenza_Kozak(prova_K1))
+
+prova_K2 = "ATCGCCACCATGGATG"
+print(sequenza_Kozak(prova_K2))
