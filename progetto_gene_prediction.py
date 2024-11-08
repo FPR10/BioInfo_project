@@ -102,7 +102,7 @@ def cg_content(sequenza):
 	risultato = (numeroC+numeroG)/len(sequenza)
 	return risultato
 
-def tata_box(sequenza)
+def tata_box(sequenza):
 	regex_tata = r"(TATA)(A|T)(A)(A|T)"
 	ret = regex.search(regex_tata,sequenza)
 	return ret.span()
