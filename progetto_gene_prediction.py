@@ -152,7 +152,7 @@ def cg_content(sequenza):
 prova = "TATAAATCGTAATCTAGTCC"
 print(iniziatore(str(prova)))
 
-sequenza_dna = "ATGCGATACGCGTAA"
+prova_CpG = "ATGCGATACGCGTAA"
 print(isole_CpG(sequenza_dna))
 
 prova_K1 = "CATGCCGCCGCCATGGTTT"
