@@ -94,7 +94,7 @@ with open(f"group_{group_id}_results.pickle", "wb") as f:
 
 ###########################################################################################################################################################################################
 
-  # INSERIRE QUI LE PROPRIE RIGHE DI CODICE
+# INSERIRE QUI LE PROPRIE RIGHE DI CODICE
 
 # SENSORI DI SEGNALE
 def tata_box(sequenza):
