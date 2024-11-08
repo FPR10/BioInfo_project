@@ -153,7 +153,7 @@ prova = "TATAAATCGTAATCTAGTCC"
 print(iniziatore(str(prova)))
 
 prova_CpG = "ATGCGATACGCGTAA"
-print(isole_CpG(sequenza_dna))
+print(isole_CpG(prova_CpG))
 
 prova_K1 = "CATGCCGCCGCCATGGTTT"
 print(sequenza_Kozak(prova_K1))
