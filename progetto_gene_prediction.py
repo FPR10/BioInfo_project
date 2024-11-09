@@ -13,7 +13,6 @@ Partecipanti
 # Importazione moduli
 import numpy as np
 import pandas as pd
-import os
 import regex
 import Bio
 import Bio.SeqIO
