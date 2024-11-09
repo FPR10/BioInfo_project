@@ -53,7 +53,7 @@ def entropia (arrayProb, arrayContInfo):
 '''
 #Riceve la sequenza e calcola arrayProb e arrayContInfo internamente. Possiamo così invocare il metodo "entropia" direttamente sulla orf
 #senza preoccuparci di effettuare operazioni di calcolo preliminari
-def entropia (sequenza):
+def calcola_entropia (sequenza):
     arrayProb = prob_seq_nucleotidica(sequenza)
     arrayContInfo = contInformativo (arrayProb)
     res = 0
@@ -67,7 +67,7 @@ def entropia (sequenza):
 
 #Prova (esempi presi da capitolo 10)
 sequenza1 = "ATGCATGCATGCATGCTTTTGGGGCCCC"
-print (entropia(sequenza1))
+print (calcola_entropia(sequenza1))
 
 sequenza2 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAATGC"
-print (entropia(sequenza2))
+print (calcola_entropia(sequenza2))
