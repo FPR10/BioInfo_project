@@ -21,6 +21,7 @@ from bisect import bisect_left
 import pickle
 import Bio.Blast
 from Bio.Blast import NCBIWWW, NCBIXML
+import Entropia
 
 
 # RICERCA DELLE ORF
@@ -75,7 +76,7 @@ seq = next(Bio.SeqIO.parse(f"group_1_seq.fasta", "fasta")).seq
 #
 # PREPARAZIONE DEL DATAFRAME CON I RISULTATI
 #
-results = pd.DataFrame(columns=["ORFpos", "Coding", "BLAST"])
+results = pd.DataFrame(columns=["ORFpos", "Coding", "checkBLAST", "Entropia"])
 # per aggiungere una riga in posizione i, inizializzando a False i campi:
 # results.loc[i] = [orf.span(), False, False]
 # per modificare ad esempio il campo Coding della riga i a True:
@@ -146,7 +147,7 @@ def isole_CpG(sequenza):
     # NB. CONTENUTO CG > 0.5; RAPPORTO CpG OSSERVATO/ATTESO > 0.6
 
 
-# FUNZIONE PER LA RICERCA BLAST
+# FUNZIONE PER LA RICERCA BLAST SEQUENZA PER SEQUENZA
 
 def ricerca_blast(sequenza):
     res = []
@@ -173,11 +174,13 @@ def ricerca_blast(sequenza):
     return res
 
 
-# FUNZIONE PER COSTRUIRE IL DATAFRAME CON I DATI DI BLAST
+# FUNZIONE PER COSTRUIRE IL DATAFRAME CON I DATI RICAVATI DALLA RICERCA SU BLAST
 
 def costruisci_dataFrame_risultati_blast(sequenza):
     df = pd.DataFrame(ricerca_blast(sequenza))
     return df
+
+df_codice_orf = pd.DataFrame(columns=["ORF", "Indice posizione"])
 
 ########################################################################################################################
 
@@ -205,16 +208,17 @@ for orf in orf_iter(str(seq)):
 
 for orf in raccolta_orf:
     if raccolta_orf[orf] > 1:
-        results.loc[len(results)] = [orf.span()[0], True, False] #SE HANNO UN PUNTEGGIO > 1, SUPPONIAMO CHE SIANO CODIFICANTI
+        df_codice_orf.loc[len(results)] = [orf, len(results) ]
+        results.loc[len(results)] = [orf.span()[0], True, False, Entropia.calcola_entropia(str(orf))] #SE HANNO UN PUNTEGGIO > 1, SUPPONIAMO CHE SIANO CODIFICANTI
         if not costruisci_dataFrame_risultati_blast(orf.group()).empty:
-            results.loc[len(results)-1, 'BLAST'] = True #SE SI TROVANO CORRISPONDENZE SU BLAST, VIENE AGGIORNATO IL PARAMETRO
+            results.loc[len(results)-1, 'checkBLAST'] = True #SE SI TROVANO CORRISPONDENZE SU BLAST, VIENE AGGIORNATO IL PARAMETRO
+
 
 # SALVATAGGIO DEI RISULTATI SU FILE
 with open(f"group_1_results.pickle", "wb") as f:
     pickle.dump(results, f)
 
 
-###########################################################################################################################################################################################
-
-# INSERIRE QUI LE PROPRIE RIGHE DI CODICE
+#Visualizzazione del dataframe dei risultati
+print(df_codice_orf)
 print(results)
