@@ -180,6 +180,7 @@ def costruisci_dataFrame_risultati_blast(sequenza):
     df = pd.DataFrame(ricerca_blast(sequenza))
     return df
 
+#DEFINIZIONE DI UN DATAFRAME DI SUPPORTO. SALVIAMO LA ORF ED UN SUO CORRISPONDENTE INDICE DI POSIZIONE, CHE RITROVEREMO POI NEL DATAFRAME FINALE
 df_codice_orf = pd.DataFrame(columns=["ORF", "Indice posizione"])
 
 ########################################################################################################################
