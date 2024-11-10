@@ -71,12 +71,9 @@ def orf_iter(sequence):
 #
 # CARICARE LA SEQUENZA DAL FILE FASTA
 #
-
-
-# Caricare la sequenza dal file FASTA
 sequenza_diretta = next(Bio.SeqIO.parse("group_1_seq.fasta", "fasta")).seq
 
-
+#SEQUENZA INVERSA COMPLEMENTARE
 seq = sequenza_diretta.reverse_complement()
 
 #
