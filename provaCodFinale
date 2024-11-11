@@ -194,7 +194,7 @@ for orf in orf_iter(str(seq)):
     # altrimenti la aggiunge al risultato
     lunghezza = orf.span()[1] - orf.span()[0]
     if lunghezza > 250:
-        final_results.loc[len(final_results)] = [orf.span(), False, False]
+        final_results.loc[len(final_results)] = [orf.span()[0], False, False]
         raccolta_orf[orf] = 0
         if sequenza_Kozak((str)(orf)):
             raccolta_orf[orf] += 1
