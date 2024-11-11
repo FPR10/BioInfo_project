@@ -222,7 +222,7 @@ for i in range(len(final_results)):
             final_results.loc[i, 'BLAST'] = True
 
 # SALVATAGGIO DEI RISULTATI SU FILE
-with open(f"group_1_results.pickle", "wb") as f:
+with open(f"group_1_results_seq_inversa.pickle", "wb") as f:
     pickle.dump(results, f)
 
 
