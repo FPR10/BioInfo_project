@@ -65,9 +65,3 @@ def calcola_entropia (sequenza):
     return out
 
 
-#Prova (esempi presi da capitolo 10)
-sequenza1 = "ATGCATGCATGCATGCTTTTGGGGCCCC"
-print (calcola_entropia(sequenza1))
-
-sequenza2 = "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAATGC"
-print (calcola_entropia(sequenza2))
