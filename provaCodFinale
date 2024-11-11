@@ -76,11 +76,13 @@ seq = next(Bio.SeqIO.parse(f"group_1_seq.fasta", "fasta")).seq
 #
 # PREPARAZIONE DEL DATAFRAME CON I RISULTATI
 #
-results = pd.DataFrame(columns=["ORFpos", "Coding", "checkBLAST"])
+results = pd.DataFrame(columns=["ORFpos", "Coding", "checkBLAST", "Entropia"])
 # per aggiungere una riga in posizione i, inizializzando a False i campi:
 # results.loc[i] = [orf.span(), False, False]
 # per modificare ad esempio il campo Coding della riga i a True:
 # results.loc[i, 'Coding'] = True
+
+final_results = pd.DataFrame(columns=["ORFpos", "Coding", "BLAST"])
 
 ########################################################################################################################
 #DICHIARAZIONE FUNZIONI UTILI
@@ -180,8 +182,6 @@ def costruisci_dataFrame_risultati_blast(sequenza):
     df = pd.DataFrame(ricerca_blast(sequenza))
     return df
 
-#DEFINIZIONE DI UN DATAFRAME DI SUPPORTO. SALVIAMO LA ORF ED UN SUO CORRISPONDENTE INDICE DI POSIZIONE, CHE RITROVEREMO POI NEL DATAFRAME FINALE
-df_codice_orf = pd.DataFrame(columns=["ORF", "Indice posizione"])
 
 ########################################################################################################################
 
@@ -194,7 +194,7 @@ for orf in orf_iter(str(seq)):
     # altrimenti la aggiunge al risultato
     lunghezza = orf.span()[1] - orf.span()[0]
     if lunghezza > 250:
-        results.loc[len(results)] = [orf.span()[0], False, False]
+        final_results.loc[len(final_results)] = [orf.span(), False, False]
         raccolta_orf[orf] = 0
         if sequenza_Kozak((str)(orf)):
             raccolta_orf[orf] += 1
@@ -206,23 +206,20 @@ for orf in orf_iter(str(seq)):
         if isole_CpG((str)(orf)):
             raccolta_orf[orf] += 1
 
-orf_sette = pd.DataFrame(columns=["ORFpos", "Coding", "checkBLAST", "Entropia"])
-
 #FILTRAGGIO ORF CON PUNTEGGIO PIÙ ALTO E INSERIMENTO NEL DATAFRAME FINALE
 
 for orf in raccolta_orf:
     if raccolta_orf[orf] > 1:
-        df_codice_orf.loc[len(results)] = [orf, len(results)]
-        orf_sette.loc[len(results)] = [orf.span()[0], True, False, Entropia.calcola_entropia(str(orf))] #SE HANNO UN PUNTEGGIO > 1, SUPPONIAMO CHE SIANO CODIFICANTI
+        results.loc[len(results)] = [orf.span()[0], True, False, Entropia.calcola_entropia(str(orf))] #SE HANNO UN PUNTEGGIO > 1, SUPPONIAMO CHE SIANO CODIFICANTI
         if not costruisci_dataFrame_risultati_blast(orf.group()).empty:
-            orf_sette.loc[len(results)-1, 'checkBLAST'] = True #SE SI TROVANO CORRISPONDENZE SU BLAST, VIENE AGGIORNATO IL PARAMETRO
+            results.loc[len(results)-1, 'checkBLAST'] = True #SE SI TROVANO CORRISPONDENZE SU BLAST, VIENE AGGIORNATO IL PARAMETRO
 
-for i in range(len(results)):
-    riga = results.iloc[i]
-    for pos in orf_sette['ORFpos']:
-        if riga['ORFpos'] == pos:
-            results.loc[i, 'Coding'] = True
-            results.loc[i, 'checkBLAST'] = True
+
+for i in range(len(final_results)):
+    for posizione in results['ORFpos']:
+        if final_results.loc[i]['ORFpos'] == posizione:
+            final_results.loc[i, 'Coding'] = True
+            final_results.loc[i, 'BLAST'] = True
 
 # SALVATAGGIO DEI RISULTATI SU FILE
 with open(f"group_1_results.pickle", "wb") as f:
@@ -230,7 +227,4 @@ with open(f"group_1_results.pickle", "wb") as f:
 
 
 #Visualizzazione del dataframe dei risultati
-#print(df_codice_orf)
-#print(results)
-
-print(results)
+print(final_results)
