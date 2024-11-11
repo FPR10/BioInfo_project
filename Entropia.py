@@ -61,7 +61,7 @@ def calcola_entropia (sequenza):
         for j in range (len (arrayContInfo)):
             if i == j:
                 res += arrayProb[i]*arrayContInfo[j]
-    out = "L'entropia della sequenza è: " + str(res) 
+    out = str(res) 
     return out
 
 
