@@ -6,27 +6,10 @@ def contaOcc(x, stringa):
 
 #Calcolo della probabilità dell'evento
 def prob_carattere_singolo(carattere, seq):
-    """_summary_
-
-    Args:
-        carattere (_type_): base azotata
-        seq (_type_): sequenza considerata
-
-    Returns:
-        out: probabilità della singola base azotata
-    """
     return contaOcc(carattere, seq)/len(seq)
 
 
 def prob_seq_nucleotidica (seq):
-    """_summary_
-
-    Args:
-        seq (_type_): sequenza 
-
-    Returns:
-        _type_: array contente le probabilità di tutte e 4 le basi
-    """
     letters = ['A','T','C','G']
     ret = []
     for i in letters:
@@ -40,17 +23,8 @@ def contInformativo (arrayProb):
     for elem in arrayProb:
         ret.append (-math.log(elem,2))
     return ret
-    
-'''
-#arrayProb e arrayContInfo possono essere rispettivamente presi
-def entropia (arrayProb, arrayContInfo):
-    res = 0
-    for i in range (len (arrayProb)):
-        for j in range (len (contInformativo)):
-            if i == j:
-                res += arrayProb[i]*arrayContInfo[j]
-    return res
-'''
+
+
 #Riceve la sequenza e calcola arrayProb e arrayContInfo internamente. Possiamo così invocare il metodo "entropia" direttamente sulla orf
 #senza preoccuparci di effettuare operazioni di calcolo preliminari
 def calcola_entropia (sequenza):
