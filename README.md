@@ -15,3 +15,15 @@ File .pikle contenente l'identificazione delle ORF
 
 ## Verifica risultati
 Le ORF classificate come codificanti vengono confrontate con sequenze note tramite BLAST (Basic Local Alignment Search Tool), per verificarne l'effettiva similarità con geni conosciuti
+
+## Info
+Progetto relativo al corso di 'Bioinformatica' erogato nell'a.a. 2024/2025 presso l'Università della Calabria (Prof. Fabio Fassetti).
+
+## Contributors
+Mariaida Perri
+Andreea Roxana Manolache
+Francesco Pio Ruffo
+
+## Clone repository
+
+
