@@ -17,7 +17,7 @@ File FASTA contenente la sequenza genomica da analizzare
 File .pikle contenente l'identificazione delle ORF
 
 ## Verifica risultati
-Le ORF classificate come codificanti vengono confrontate con sequenze note tramite BLAST (Basic Local Alignment Search Tool), per verificarne l'effettiva similarità con geni conosciuti
+Le ORF classificate come codificanti vengono confrontate con sequenze note tramite BLAST (Basic Local Alignment Search Tool) per verificarne l'effettiva similarità con geni conosciuti
 
 
 ## Contributors
