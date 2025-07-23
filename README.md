@@ -1,4 +1,7 @@
 # Progetto Bioinformatica
+
+## Info
+Progetto relativo al corso di 'Bioinformatica' erogato nell'a.a. 2024/2025 presso l'Università della Calabria (Prof. Fabio Fassetti).
 Utilizzo di un algoritmo di gene prediction per l’identificazione di ORF (Open Reading Frames) all’interno di una sequenza nucleotidica in formato FASTA
 
 ## Obiettivo
@@ -16,8 +19,6 @@ File .pikle contenente l'identificazione delle ORF
 ## Verifica risultati
 Le ORF classificate come codificanti vengono confrontate con sequenze note tramite BLAST (Basic Local Alignment Search Tool), per verificarne l'effettiva similarità con geni conosciuti
 
-## Info
-Progetto relativo al corso di 'Bioinformatica' erogato nell'a.a. 2024/2025 presso l'Università della Calabria (Prof. Fabio Fassetti).
 
 ## Contributors
 Mariaida Perri
