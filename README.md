@@ -21,9 +21,9 @@ Le ORF classificate come codificanti vengono confrontate con sequenze note trami
 
 
 ## Contributors
-Mariaida Perri
-Andreea Roxana Manolache
-Francesco Pio Ruffo
+Mariaida Perri <br>
+Andreea Roxana Manolache <br>
+Francesco Pio Ruffo <br>
 
 ## Clone repository
 
