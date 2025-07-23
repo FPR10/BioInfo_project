@@ -26,5 +26,5 @@ Andreea Roxana Manolache <br>
 Francesco Pio Ruffo <br>
 
 ## Clone repository
-
+https://github.com/FPR10/BioInfo_project.git
 
