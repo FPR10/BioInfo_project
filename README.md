@@ -1,7 +1,7 @@
 # Progetto Bioinformatica
 
 ## Info
-Progetto relativo al corso di 'Bioinformatica' erogato nell'a.a. 2024/2025 presso l'Università della Calabria (Prof. Fabio Fassetti).
+Progetto relativo al corso di 'Bioinformatica' erogato nell'a.a. 2024/2025 presso l'Università della Calabria (Prof. Fabio Fassetti). <nb>
 Utilizzo di un algoritmo di gene prediction per l’identificazione di ORF (Open Reading Frames) all’interno di una sequenza nucleotidica in formato FASTA
 
 ## Obiettivo
