@@ -1,5 +1,17 @@
-# BioInfo_project
+# Progetto Bioinformatica
+Utilizzo di un algoritmo di gene prediction per l’identificazione di ORF (Open Reading Frames) all’interno di una sequenza nucleotidica in formato FASTA
 
-Algoritmo di gene prediction
+### Obiettivo
+Data una sequenza genomica, l’obiettivo è:
+1. Identificare le ORF presente nella sequenza
+2. Salvare le informazioni in un DataFrame, specificando per ciascuna ORF se la regione è codificante o non codificante.
+    Identificare tutte le ORF presenti nella sequenza.
 
-Scopo del progetto è, data la sequenza scaricata, salvare in un dataframe la posizione delle ORF presenti nella sequenza e l'indicazione se si tratta di regione codificante o non codificante e se è stata verificata su BLAST
+### Input 
+File FASTA contenente la sequenza genomica da analizzare
+
+### Output
+File .pikle contenente l'identificazione delle ORF
+
+### Verifica risultati
+Le ORF classificate come codificanti vengono confrontate con sequenze note tramite BLAST (Basic Local Alignment Search Tool), per verificarne l'effettiva similarità con geni conosciuti
